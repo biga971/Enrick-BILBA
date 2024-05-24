@@ -8,7 +8,8 @@ import validator from 'validator'
 export function Form() {
   const [state, handleSubmit] = useForm('./my-handling-form')
   const [validEmail, setValidEmail] = useState(false)
-  const [isHuman, setIsHuman] = useState(true)
+  //const [isHuman, setIsHuman] = useState(true)
+  const isHuman = true
   const [message, setMessage] = useState('')
   function verifyEmail(email: string) {
     if (validator.isEmail(email)) {
@@ -17,6 +18,7 @@ export function Form() {
       setValidEmail(false)
     }
   }
+  
   useEffect(() => {
     if (state.succeeded) {
       toast.success('Email successfully sent!', {
