@@ -19,7 +19,12 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    "types": ["@types/babel__generator/index.d.ts"]
+    "types": ["@types/babel__generator/index.d.ts"],
+    "paths": {
+      "assert": [
+        "./node_modules/path-browserify"
+      ]
+    },
   },
   "include": [
     "src"

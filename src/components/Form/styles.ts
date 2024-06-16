@@ -31,6 +31,8 @@ export const Container = styled.div`
       }
     }
 
+ 
+
     textarea{
       height: 20rem;
       overflow-y: auto;

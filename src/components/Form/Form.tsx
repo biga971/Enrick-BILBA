@@ -1,16 +1,42 @@
 import { Container, ContainerSucces } from './styles'
 import { useForm, ValidationError } from '@formspree/react'
 import { toast, ToastContainer } from 'react-toastify'
+
 //import ReCAPTCHA from 'react-google-recaptcha'
 import { useEffect, useState } from 'react'
 import validator from 'validator'
 
+import { sendMail } from '../../services'
+
 export function Form() {
   const [state, handleSubmit] = useForm('./my-handling-form')
   const [validEmail, setValidEmail] = useState(false)
+  const [email, setEmail] = useState('')
   //const [isHuman, setIsHuman] = useState(true)
   const isHuman = true
   const [message, setMessage] = useState('')
+
+  
+  const onClick = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const body = {
+      email: email,
+      message: message
+    }
+    const response = await sendMail(body)
+
+    if(response.response.accepted[0] === "enrick.bilba@icloud.com") {
+      toast.success('Email successfully sent!', {
+        position: toast.POSITION.BOTTOM_LEFT,
+        pauseOnFocusLoss: false,
+        closeOnClick: true,
+        hideProgressBar: false,
+        toastId: 'succeeded',
+      })
+    }
+  }
+
+
   function verifyEmail(email: string) {
     if (validator.isEmail(email)) {
       setValidEmail(true)
@@ -48,7 +74,7 @@ export function Form() {
   return (
     <Container>
       <h2>Contactez-moi via le formulaire</h2>
-      <form onSubmit={handleSubmit}>
+      <form  onSubmit={onClick} >
         <input
           placeholder="Email"
           id="email"
@@ -56,13 +82,14 @@ export function Form() {
           name="email"
           onChange={(e) => {
             verifyEmail(e.target.value)
+            setEmail(e.target.value)
           }}
           required
         />
         <ValidationError prefix="Email" field="email" errors={state.errors} />
         <textarea
           required
-          placeholder="Send a message to get started."
+          placeholder="Ecrivez votre message."
           id="message"
           name="message"
           onChange={(e) => {
@@ -86,7 +113,7 @@ export function Form() {
         >
           Envoyer
         </button>
-      </form>
+       </form> 
       <ToastContainer />
     </Container>
   )
