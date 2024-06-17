@@ -13,7 +13,7 @@ export const sendMail = async (body:{email: string, message: string}) => {
             message: body.message
         })
     });
-    console.log(rawResponse, rawResponse.json())
+    console.log(rawResponse, await rawResponse.json())
     const content = await rawResponse.json();
     return content
 }
