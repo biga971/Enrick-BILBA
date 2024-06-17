@@ -20,7 +20,7 @@ import axios from "axios";
 
 
 export const sendMail = async (body:{email: string, message: string}) => {
-    const { data } = await axios.post(`${host}`, {      
+    const { data, status, headers } = await axios.post(`${host}`, {      
         email:  body.email,
         message: body.message
     }, 
@@ -29,6 +29,7 @@ export const sendMail = async (body:{email: string, message: string}) => {
           'Content-Type': 'application/json'
         }
 });
+    console.log(data, status, headers)
     const response = data
     return response
 };
