@@ -24,7 +24,6 @@ export function Form() {
       message: message
     }
     const response = await sendMail(body)
-    console.log(response)
 
     if (response.response.accepted[0] === undefined) {
       toast.error('Email failed to send!', {
@@ -34,8 +33,8 @@ export function Form() {
         hideProgressBar: false,
         toastId: 'failed',
       })
-    }else if(response.response.accepted[0] === "enrick.bilba@icloud.com") {
       handleSubmit(event)
+    }else if(response.response.accepted[0] === "enrick.bilba@icloud.com") {
       toast.success('Email successfully sent!', {
         position: toast.POSITION.BOTTOM_LEFT,
         pauseOnFocusLoss: false,
