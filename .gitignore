@@ -12,9 +12,8 @@
 /build
 
 
-/src/mail
+
 /functions
-/src/services/host.ts
 
 # misc
 .DS_Store
