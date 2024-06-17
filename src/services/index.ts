@@ -1,6 +1,6 @@
 import { host } from "./host";
-
-export const sendMail = async (body:{email: string, message: string}) => {
+import axios from "axios";
+/* export const sendMail = async (body:{email: string, message: string}) => {
     console.log(host)
     const rawResponse = await fetch(`${host}`, {
         method: 'POST',
@@ -16,5 +16,19 @@ export const sendMail = async (body:{email: string, message: string}) => {
     console.log(rawResponse, rawResponse.json())
     const content = await rawResponse.json();
     return content
-}
+} */
 
+
+export const sendMail = async (body:{email: string, message: string}) => {
+    const { data, status } = await axios.post(`${host}`, {      
+        email:  body.email,
+        message: body.message
+    }, 
+    {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+});
+    const response = data
+    return response
+};
