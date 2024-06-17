@@ -34,8 +34,7 @@ export function Form() {
         hideProgressBar: false,
         toastId: 'failed',
       })
-    }
-    if(response.response.accepted[0] === "enrick.bilba@icloud.com") {
+    }else if(response.response.accepted[0] === "enrick.bilba@icloud.com") {
       handleSubmit(event)
       toast.success('Email successfully sent!', {
         position: toast.POSITION.BOTTOM_LEFT,
