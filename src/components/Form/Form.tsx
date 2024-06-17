@@ -24,7 +24,7 @@ export function Form() {
       message: message
     }
     const response = await sendMail(body)
-    //console.log(response)
+    console.log(response.response)
 
     if (response.response.accepted[0] === undefined) {
       toast.error('Email failed to send!', {
