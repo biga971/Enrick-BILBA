@@ -1,7 +1,7 @@
 import { host } from "./host";
 
 export const sendMail = async (body:{email: string, message: string}) => {
-    console.log(body)
+    console.log(body, host)
     const rawResponse = await fetch(`${host}`, {
         method: 'POST',
         headers: {
