@@ -18,13 +18,14 @@ export function Form() {
 
   
   const onClick = async (event: React.FormEvent<HTMLFormElement>) => {
+    console.log(email)
     event.preventDefault();
     const body = {
       email: email,
       message: message
     }
     const response = await sendMail(body)
-
+    console.log(response)
     if(response.response.accepted[0] === "enrick.bilba@icloud.com") {
       handleSubmit(event)
       toast.success('Email successfully sent!', {
