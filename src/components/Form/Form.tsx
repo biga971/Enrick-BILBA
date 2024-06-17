@@ -18,7 +18,6 @@ export function Form() {
 
   
   const onClick = async (event: React.FormEvent<HTMLFormElement>) => {
-    console.log(email)
     event.preventDefault();
     const body = {
       email: email,
