@@ -26,6 +26,7 @@ export function Form() {
     const response = await sendMail(body)
 
     if(response.response.accepted[0] === "enrick.bilba@icloud.com") {
+      handleSubmit(event)
       toast.success('Email successfully sent!', {
         position: toast.POSITION.BOTTOM_LEFT,
         pauseOnFocusLoss: false,
